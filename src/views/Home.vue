@@ -78,14 +78,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { Button } from 'element-ui'
-import Header from './Header'
-import NavTop from './NavTop'
+import Vue from "vue";
+import { Button } from "element-ui";
+import Header from "./Header";
+import NavTop from "./NavTop";
 
-Vue.use(Button)
+Vue.use(Button);
 export default {
-  name: 'home',
+  name: "home",
   components: {
     [Header.name]: Header,
     [NavTop.name]: NavTop
@@ -93,20 +93,20 @@ export default {
   data() {
     return {
       isCollapse: false
-    }
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath)
+      console.log(key, keyPath);
     },
     handleCollapse() {
-      this.isCollapse = !this.isCollapse
+      this.isCollapse = !this.isCollapse;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

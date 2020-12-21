@@ -43,25 +43,43 @@
         tooltip-effect="dark"
         style="width: 100%"
         @selection-change="handleSelectionChange"
+        class="tableHead"
         border
       >
-        <el-table-column type="selection" width="55"> </el-table-column>
-        <el-table-column label="ID" width="120">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
+        <el-table-column type="selection" width="55"></el-table-column>
+        <el-table-column prop="ID" label="ID" width="120"></el-table-column>
+        <el-table-column prop="username" label="用户名" width="120">
         </el-table-column>
-        <el-table-column prop="userName" label="用户名" width="120">
-        </el-table-column>
-        <el-table-column prop=" balance" label="账户余额" width="120">
+        <el-table-column prop="balance" label="账户余额" width="120">
         </el-table-column
         ><el-table-column prop="userIcon" label="头像(查看大图)" width="120">
-        </el-table-column
+          <div class="demo-image__preview">
+            <el-image
+              style="width: 40px; height: 40px"
+              :src="url"
+              :preview-src-list="srcList"
+            >
+            </el-image>
+          </div> </el-table-column
         ><el-table-column prop="address" label="地址" width="120">
         </el-table-column
         ><el-table-column prop="state" label="状态" width="120">
+          <el-tag type="success">成功</el-tag>
         </el-table-column>
         <el-table-column prop="regTime" label="注册时间" width="120">
         </el-table-column>
         <el-table-column prop="handle" label="操作" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+              >编辑</el-button
+            >
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              >删除</el-button
+            >
+          </template>
         </el-table-column>
       </el-table>
       <div class="tableFooter">
@@ -79,37 +97,54 @@
 
 <script>
 export default {
-  name: 'basicTable',
+  username: "basicTable",
   data() {
     return {
-      input: '',
+      input: "",
       options: [
         {
-          value: '选项1',
-          label: '广东省'
+          value: "选项1",
+          label: "广东省"
         },
         {
-          value: '选项2',
-          label: '北京市'
+          value: "选项2",
+          label: "北京市"
         },
         {
-          value: '选项3',
-          label: '天津市'
+          value: "选项3",
+          label: "天津市"
         }
       ],
+      value: "",
       tableData: [
         {
           ID: 1,
-          userName: '王小虎',
+          username: "王小虎",
           balance: 100,
-          userIcon: 'img',
-          address: '上海市普陀区金沙江路 1518 弄',
-          state: '成功',
-          regTime: '2020-10-10',
-          handle: '修改'
+          userIcon: "img",
+          address: "上海市普陀区",
+          state: "成功",
+          regTime: "2020-10-10",
+          handle: "修改"
+        },
+        {
+          ID: 2,
+          username: "王小虎",
+          balance: 200,
+          userIcon: "img",
+          address: "上海市普陀区",
+          state: "成功",
+          regTime: "2020-10-10",
+          handle: "修改"
         }
       ],
-      multipleSelection: []
+      multipleSelection: [],
+      url:
+        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+      srcList: [
+        "https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg",
+        "https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg"
+      ]
     }
   },
   methods: {
@@ -124,7 +159,8 @@ export default {
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
-    }
+    },
+    handleEdit() {}
   }
 }
 </script>
@@ -140,7 +176,7 @@ export default {
   color: #606266;
   font-size: 14px;
   display: inline-block;
-  font-family: Helvetica, 'PingFang SC';
+  font-family: Helvetica, "PingFang SC";
   margin-left: 10px;
 }
 .content {
@@ -165,6 +201,10 @@ export default {
 .tableInput {
   width: 300px;
   padding: 0 10px;
+}
+.el-table td,
+.el-table th {
+  text-align: center;
 }
 .tableFooter {
   padding: 2px 5px;
