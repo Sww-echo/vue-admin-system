@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-left-btn">
-      <i class="el-icon-location" @click="handleLeftClick"></i>
+      <i class="el-icon-s-unfold" @click="handleLeftClick"></i>
       <span>后台管理系统</span>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
     color: white;
     font-size: 22px;
     line-height: 70px;
-    .el-icon-location {
+    .el-icon-s-unfold {
       display: inline-block;
       margin: 0 20px;
     }
