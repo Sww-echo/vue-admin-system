@@ -6,6 +6,7 @@
     </div>
     <div class="content">
       <div class="handleBox">
+        <!-- 批量删除按钮 -->
         <el-button
           type="primary"
           icon="el-icon-delete"
@@ -13,6 +14,7 @@
           class="tableBtn"
           >批量删除</el-button
         >
+        <!-- 选择地址 -->
         <el-select
           v-model="value"
           placeholder="地址"
@@ -27,16 +29,19 @@
           >
           </el-option>
         </el-select>
+        <!-- 搜索框 -->
         <el-input
           v-model="input"
           placeholder="请输入内容"
           size="small"
           class="tableInput"
         ></el-input>
+        <!-- 搜索按钮 -->
         <el-button type="primary" icon="el-icon-search" size="small"
           >搜索</el-button
         >
       </div>
+      <!-- 表格 -->
       <el-table
         ref="multipleTable"
         :data="tableData"
@@ -53,6 +58,7 @@
         <el-table-column prop="balance" label="账户余额" width="120">
         </el-table-column
         ><el-table-column prop="userIcon" label="头像(查看大图)" width="120">
+          <!-- 头像图片 -->
           <div class="demo-image__preview">
             <el-image
               style="width: 40px; height: 40px"
@@ -62,21 +68,58 @@
             </el-image>
           </div> </el-table-column
         ><el-table-column prop="address" label="地址" width="120">
-        </el-table-column
-        ><el-table-column prop="state" label="状态" width="120">
-          <el-tag type="success">成功</el-tag>
         </el-table-column>
+
+        <el-table-column
+          prop="tag"
+          label="状态"
+          width="100"
+          filter-placement="bottom-end"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.tag === '成功' ? 'success' : 'danger'"
+              disable-transitions
+              >{{ scope.row.tag }}</el-tag
+            >
+          </template>
+        </el-table-column>
+
         <el-table-column prop="regTime" label="注册时间" width="120">
         </el-table-column>
         <el-table-column prop="handle" label="操作" show-overflow-tooltip>
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+            <el-button size="mini" @click="dialogVisible = true"
               >编辑</el-button
             >
+            <!-- 编辑弹框 -->
+            <el-dialog title="编辑" :visible.sync="dialogVisible" width="30%">
+              <el-form :model="form">
+                <el-form-item label="活动名称" :label-width="formLabelWidth">
+                  <el-input
+                    v-model="form.username"
+                    autocomplete="off"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="地址" :label-width="formLabelWidth">
+                  <el-input
+                    v-model="form.address"
+                    autocomplete="off"
+                  ></el-input>
+                </el-form-item>
+              </el-form>
+              <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false"
+                  >确 定</el-button
+                >
+              </span>
+            </el-dialog>
             <el-button
               size="mini"
               type="danger"
               @click="handleDelete(scope.$index, scope.row)"
+              class="tableDel"
               >删除</el-button
             >
           </template>
@@ -123,7 +166,7 @@ export default {
           balance: 100,
           userIcon: "img",
           address: "上海市普陀区",
-          state: "成功",
+          tag: "失败",
           regTime: "2020-10-10",
           handle: "修改"
         },
@@ -133,7 +176,27 @@ export default {
           balance: 200,
           userIcon: "img",
           address: "上海市普陀区",
-          state: "成功",
+          tag: "成功",
+          regTime: "2020-10-10",
+          handle: "修改"
+        },
+        {
+          ID: 3,
+          username: "王小虎",
+          balance: 200,
+          userIcon: "img",
+          address: "上海市普陀区",
+          tag: "失败",
+          regTime: "2020-10-10",
+          handle: "修改"
+        },
+        {
+          ID: 4,
+          username: "王小虎",
+          balance: 200,
+          userIcon: "img",
+          address: "上海市普陀区",
+          tag: "成功",
           regTime: "2020-10-10",
           handle: "修改"
         }
@@ -144,7 +207,14 @@ export default {
       srcList: [
         "https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg",
         "https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg"
-      ]
+      ],
+      dialogVisible: false,
+      form: {
+        name: "",
+        address: "",
+        delivery: false
+      },
+      formLabelWidth: "90px"
     }
   },
   methods: {
@@ -160,7 +230,28 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
-    handleEdit() {}
+    handleDelete() {
+      this.$confirm("确定要删除吗", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          })
+        })
+    },
+    filterTag(value, row) {
+      return row.tag === value
+    }
   }
 }
 </script>
@@ -205,6 +296,9 @@ export default {
 .el-table td,
 .el-table th {
   text-align: center;
+}
+.tableDel {
+  margin: 0 10px;
 }
 .tableFooter {
   padding: 2px 5px;
