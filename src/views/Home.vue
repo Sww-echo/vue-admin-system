@@ -151,7 +151,7 @@ export default {
     top: 30px;
     left: 0;
     bottom: 0;
-    background: #f8f8f8;
+    background: #fff;
     overflow-y: auto;
   }
 }
