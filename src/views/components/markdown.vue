@@ -1,6 +1,6 @@
 <template>
-  <div class="markdown page">
-    <h1>markdown编辑器</h1>
+  <div class="popUp page">
+    <h1>markdown</h1>
   </div>
 </template>
 
