@@ -146,7 +146,7 @@ export default {
     top: 30px;
     left: 0;
     bottom: 0;
-    background: #999;
+    background: #f8f8f8;
     overflow-y: auto;
   }
 }
