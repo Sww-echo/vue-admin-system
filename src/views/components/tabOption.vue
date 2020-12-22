@@ -5,7 +5,7 @@
         ><i class="el-icon-message message"></i>tap选项卡</el-breadcrumb-item
       >
     </el-breadcrumb>
-    <div class="tapOption-wrap"  >
+    <div class="main-wrap"  >
       <el-tabs v-model="activeName">
         <!-- 未读消息 -->
         <el-tab-pane :label="`未读消息(${this.$store.state.unread.length})`" name="first">
@@ -141,7 +141,7 @@ export default {
     margin: 10px 0;
   }
 }
-.tapOption-wrap {
+.main-wrap {
   padding: 30px;
   background: #fff;
   border-radius: 5px;
