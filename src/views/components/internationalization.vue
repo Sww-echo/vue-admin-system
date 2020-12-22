@@ -1,6 +1,11 @@
 <template>
   <div class="internationalization page">
-    <h1>国际化功能</h1>
+    <el-breadcrumb class="breadcrumb">
+      <el-breadcrumb-item><i class="el-icon-message message"></i>国际化产品</el-breadcrumb-item>
+    </el-breadcrumb>
+    <div class="internation-main">
+
+    </div>
   </div>
 </template>
 
