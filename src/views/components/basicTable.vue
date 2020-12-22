@@ -12,6 +12,7 @@
           icon="el-icon-delete"
           size="small"
           class="tableBtn"
+          @click="tabledelAll"
           >批量删除</el-button
         >
         <!-- 选择地址 -->
@@ -218,6 +219,13 @@ export default {
     }
   },
   methods: {
+    tabledelAll() {
+      //判断是否批量删除
+      //1.全选，删除所有
+      //2.非全选，则删除已经选中的数据
+
+      this.tableData = []
+    },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {

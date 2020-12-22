@@ -135,10 +135,10 @@ export default {
   height: calc(100vh - 70px);
 }
 .el-menu-item:hover {
-   background-color:#283446 !important;
+  background-color: #283446 !important;
 }
 .el-submenu__title:hover {
-   background-color:#283446 !important
+  background-color: #283446 !important;
 }
 .flexBox {
   display: flex;
@@ -154,10 +154,10 @@ export default {
     position: absolute;
     width: 100%;
     height: calc(100% - 30px);
-    top: 30px;
+    top: 50px;
     left: 0;
     bottom: 0;
-    background: #f8f8f8;
+    background: #fff;
     overflow-y: auto;
   }
 }
