@@ -4,15 +4,14 @@
     <div class="flexBox">
       <div class="menu" ref="menu">
         <el-menu
-          default-active="1-4-1"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
+          @select="handleSelect"
           :collapse="isCollapse"
-          background-color="rgb(50, 65, 87)"
-          text-color="rgb(191, 203, 217)"
+          background-color="rgb(50,65,87)"
+          text-color="rgb(173,188,205)"
           active-text-color="rgb(32, 160, 255)"
           :unique-opened="true"
+          :default-active="nowShow"
           router
         >
           <el-menu-item index="/">
@@ -82,6 +81,7 @@ import Vue from "vue";
 import { Button } from "element-ui";
 import Header from "./Header";
 import NavTop from "./NavTop";
+import { mapMutations, mapState } from "vuex";
 
 Vue.use(Button);
 export default {
@@ -90,26 +90,43 @@ export default {
     [Header.name]: Header,
     [NavTop.name]: NavTop
   },
+  props: {},
   data() {
     return {
       isCollapse: false
     };
   },
+  watch: {
+    $route(to) {
+      this.changeNowShow(to.path);
+    }
+  },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    // 点击菜单列
+    handleSelect(path) {
+      console.log(this.nowShow);
+      console.log(path);
+      this.addNavList(path);
+      // 传递当前显示页
+      this.changeNowShow(path);
     },
     handleCollapse() {
       this.isCollapse = !this.isCollapse;
-    }
+    },
+    ...mapMutations({
+      addNavList: "addNav",
+      changeNowShow: "changeShow"
+    })
+  },
+  computed: {
+    ...mapState({
+      nowShow: state => state.nowShow
+    })
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   height: calc(100vh - 70px);
