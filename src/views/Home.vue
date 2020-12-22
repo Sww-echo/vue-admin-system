@@ -117,6 +117,12 @@ export default {
 .el-menu-vertical-demo {
   height: calc(100vh - 70px);
 }
+.el-menu-item:hover {
+   background-color:#283446 !important;
+}
+.el-submenu__title:hover {
+   background-color:#283446 !important
+}
 .flexBox {
   display: flex;
 }
