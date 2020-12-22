@@ -83,7 +83,13 @@ export default new Vuex.Store({
     // 清空顶部tag
     remNavTop(state) {
       console.log(111);
-      state.navTopList = [];
+      state.navTopList = [
+        {
+          path: "/",
+          name: "home",
+          label: "系统首页"
+        }
+      ];
     },
     // 接收传递过来的当前显示页
     changeShow(state, name) {

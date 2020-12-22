@@ -5,9 +5,8 @@
         v-for="tag in tags"
         :key="tag.label"
         closable
-        type=""
+        :effect="$route.path === tag.path ? 'dark' : 'plain'"
         :hit="true"
-        effect="dark"
         size="small"
         :disable-transitions="false"
         @close="handleClose(tag)"
@@ -43,6 +42,7 @@ export default {
     handleClick(tag) {
       console.log(tag);
       this.$router.push(tag.path);
+      console.log(this.$route);
     },
     // 关闭其他
     remElse() {
@@ -52,6 +52,8 @@ export default {
     // 关闭所有
     remAll() {
       this.removeTag();
+      console.log(this);
+      this.$router.push("/");
     },
     ...mapMutations({
       removeTag: "remNavTop",

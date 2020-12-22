@@ -96,6 +96,11 @@ export default {
       isCollapse: false
     };
   },
+  watch: {
+    $route(to) {
+      this.changeNowShow(to.path);
+    }
+  },
   methods: {
     // 点击菜单列
     handleSelect(path) {
