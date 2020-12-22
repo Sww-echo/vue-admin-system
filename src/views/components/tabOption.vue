@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: "tabOption",
   data() {
@@ -84,27 +85,48 @@ export default {
   methods: {
     // 标记为已读
     markReaded: function (scope){
-      this.$store.dispatch('markReadedA',scope)
+      // this.$store.dispatch('markReadedA',scope)
+      this.markReadedNew(scope)
     },
     // 标记全部
     allMarkReaded: function (){
-      this.$store.dispatch('allMarkReadedA')
+      // this.$store.dispatch('allMarkReadedA')
+      this.allMarkReadedNew()
     },
+    // 删除已读信息
     deleteHandle: function(scope){
-      this.$store.dispatch('deleteHandleA',scope)
+      // this.$store.dispatch('deleteHandleA',scope)
+      this.deleteHandleNew(scope)
     },
+    // 删除所有的信息
     allDeleteHandle: function(){
-      this.$store.dispatch('allDeleteHandleA')
+      // this.$store.dispatch('allDeleteHandleA')
+      this.allDeleteHandleNew()
     },
+    // 清空所有的信息
     emptyAll: function(){
-      this.$store.dispatch('emptyAllA')
+      // this.$store.dispatch('emptyAllA')
+      this.emptyAllNew()
     },
+    // 还原
     restore: function(scope){
-      this.$store.dispatch('restoreA',scope)
-    }
+      // this.$store.dispatch('restoreA',scope)
+      this.restoreNew(scope)
+    },
+      ...mapMutations({
+      markReadedNew: 'markReaded',
+      allMarkReadedNew: 'allMarkReaded',
+      deleteHandleNew: 'deleteHandle',
+      allDeleteHandleNew: 'allDeleteHandle',
+      emptyAllNew: 'emptyAll',
+      restoreNew: 'restore'
+    })
   },
   created(){
     console.log(this.$store)
+  },
+  computed: {
+
   }
 };
 </script>

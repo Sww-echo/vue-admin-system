@@ -160,25 +160,25 @@ export default new Vuex.Store({
       state.navTopList = a;
     }
   },
-  actions: {
-    markReadedA(store,data){
-      store.commit('markReaded',data)
-    },
-    allMarkReadedA(store,data){
-      store.commit('allMarkReaded',data)
-    },
-    deleteHandleA(store,data){
-      store.commit('deleteHandle',data)
-    },
-    allDeleteHandleA(store,data){
-      store.commit('allDeleteHandle',data)
-    },
-    emptyAllA(store,data){
-      store.commit('emptyAll',data)
-    },
-    restoreA(store,data){
-      store.commit('restore',data)
-    },
-  },
+  // actions: {
+  //   markReadedA(store,data){
+  //     store.commit('markReaded',data)
+  //   },
+  //   allMarkReadedA(store,data){
+  //     store.commit('allMarkReaded',data)
+  //   },
+  //   deleteHandleA(store,data){
+  //     store.commit('deleteHandle',data)
+  //   },
+  //   allDeleteHandleA(store,data){
+  //     store.commit('allDeleteHandle',data)
+  //   },
+  //   emptyAllA(store,data){
+  //     store.commit('emptyAll',data)
+  //   },
+  //   restoreA(store,data){
+  //     store.commit('restore',data)
+  //   },
+  // },
   modules: {}
 });
