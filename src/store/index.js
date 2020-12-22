@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-<<<<<<< HEAD
     unread: [
       {
         message: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
@@ -28,65 +27,7 @@ export default new Vuex.Store({
         "message": "【系统通知】今晚抽大奖，赶紧预约吧",
         time: "2020-12-21 12:00:00"
       }
-    ]
-  },
-  mutations: {
-    // 标记为已读
-    markReaded: function(state,scope){
-      state.readed.push(state.unread[scope.$index])
-      state.unread.splice([scope.$index],1)
-    },
-    // 标记全部
-    allMarkReaded: function (state){
-      state.readed= state.readed.concat(state.unread)
-      state.unread=[]
-    },
-    // 删除已读
-    deleteHandle: function(state,scope){
-     state.recycle.push(state.readed[scope.$index])
-      state.readed.splice(scope.$index,1)
-    },
-    // 删除全部
-    allDeleteHandle: function(state){
-      state.recycle = state.recycle.concat(state.readed)
-      state.readed=[]
-    },
-    // 清空回收站
-    emptyAll: function(state){
-      state.recycle = []
-    },
-    // 回收站还原
-    restore: function(state, scope){
-      state.readed=state.readed.concat(state.recycle[scope.$index])
-      state.recycle.splice(scope.$index,1)
-    },
-
-    // 清空某个数组从而清空整个组件一部分
-    empty:function(state,com){
-      state[com] = []
-    }
-  },
-  actions: {
-    markReadedA(store,data){
-      store.commit('markReaded',data)
-    },
-    allMarkReadedA(store,data){
-      store.commit('allMarkReaded',data)
-    },
-    deleteHandleA(store,data){
-      store.commit('deleteHandle',data)
-    },
-    allDeleteHandleA(store,data){
-      store.commit('allDeleteHandle',data)
-    },
-    emptyAllA(store,data){
-      store.commit('emptyAll',data)
-    },
-    restoreA(store,data){
-      store.commit('restore',data)
-    },
-  },
-=======
+    ],
     navTopList: [{ label: "系统首页", name: "home", path: "/" }],
     sidebarList: [
       {
@@ -153,7 +94,41 @@ export default new Vuex.Store({
     nowShow: "/"
   },
   mutations: {
-    //  添加顶部tag
+    // 标记为已读
+    markReaded: function(state,scope){
+      state.readed.push(state.unread[scope.$index])
+      state.unread.splice([scope.$index],1)
+    },
+    // 标记全部
+    allMarkReaded: function (state){
+      state.readed= state.readed.concat(state.unread)
+      state.unread=[]
+    },
+    // 删除已读
+    deleteHandle: function(state,scope){
+     state.recycle.push(state.readed[scope.$index])
+      state.readed.splice(scope.$index,1)
+    },
+    // 删除全部
+    allDeleteHandle: function(state){
+      state.recycle = state.recycle.concat(state.readed)
+      state.readed=[]
+    },
+    // 清空回收站
+    emptyAll: function(state){
+      state.recycle = []
+    },
+    // 回收站还原
+    restore: function(state, scope){
+      state.readed=state.readed.concat(state.recycle[scope.$index])
+      state.recycle.splice(scope.$index,1)
+    },
+
+    // 清空某个数组从而清空整个组件一部分
+    empty:function(state,com){
+      state[com] = []
+    },
+        //  添加顶部tag
     addNav(state, path) {
       // console.log(111);
       let a = state.sidebarList.filter(item => item.path === path);
@@ -185,7 +160,25 @@ export default new Vuex.Store({
       state.navTopList = a;
     }
   },
-  actions: {},
->>>>>>> 636310f6a0b43e497ac252d44c9fd0508d6b0f95
+  actions: {
+    markReadedA(store,data){
+      store.commit('markReaded',data)
+    },
+    allMarkReadedA(store,data){
+      store.commit('allMarkReaded',data)
+    },
+    deleteHandleA(store,data){
+      store.commit('deleteHandle',data)
+    },
+    allDeleteHandleA(store,data){
+      store.commit('allDeleteHandle',data)
+    },
+    emptyAllA(store,data){
+      store.commit('emptyAll',data)
+    },
+    restoreA(store,data){
+      store.commit('restore',data)
+    },
+  },
   modules: {}
 });
