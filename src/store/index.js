@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    is_login: false,
     unread: [
       {
         message: "【系统通知】该系统将于今晚凌晨2点到5点进行升级维护",
@@ -94,9 +93,6 @@ export default new Vuex.Store({
     nowShow: "/"
   },
   mutations: {
-    changeLogin(state, flag) {
-      state.is_login = flag;
-    },
     // 标记为已读
     markReaded: function(state, scope) {
       state.readed.push(state.unread[scope.$index]);
