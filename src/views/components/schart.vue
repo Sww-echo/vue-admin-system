@@ -1,13 +1,124 @@
 <template>
   <div class="schart page">
-    <h1>schart图表</h1>
+    <h1 class="el-icon-setting">schart图表</h1>
+    <div class="show">
+      <div class="explain">
+        vue-schart：vue.js封装sChart.js的图表组件。 访问地址:<a
+          href="https://github.com/lin-xin/vue-schart"
+          >vue-schart</a
+        >
+      </div>
+      <div class="map">
+        <h2>柱状图</h2>
+        <div id="sell"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import * as echarts from "echarts";
 export default {
-  name: "schart"
+  name: "schart",
+  mounted() {
+    //挂载完成
+    //初始化echarts实例
+    var myChart = echarts.init(document.getElementById("sell"));
+    //指定图表的配置项和数据
+    var option = {
+      title: {
+        text: "最近一周各品类销售图",
+        left:"center",
+        
+      },
+      legend: {
+        data: ["家电", "百货", "食品"],
+        left: "center",
+        type: "plain",
+        top:"8%"
+      },
+      toolbox: {
+        //工具栏。内置有导出图片，数据视图，动态类型切换，数据区域缩放，重置五个工具
+        show: true,
+        feature: {
+          dataView: { title: "数据视图" },
+          magicType: {
+            type: ["line", "bar", "stack", "tiled"],
+          },
+          restore: { title: "还原" },
+        },
+      },
+        xAxis: {
+          data: ["周一", "周二", "周三", "周四", "周五"],
+          type:"category",
+          show:true
+        },
+        yAxis: {type:"value"},
+        series: [
+          {
+            name: "家电",
+            type: "bar",
+            data: [234, 278, 270, 190, 230],
+          },
+          {
+            name: "百货",
+            type: "bar",
+            data: [164, 178, 190, 135, 160],
+          },
+          {
+            name: "食品",
+            type: "bar",
+            data: [144, 198, 150, 235, 120],
+          },
+        ],
+    };
+    
+    myChart.setOption(option);
+  },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.page {
+  padding: 10px;
+  overflow-x: hidden;
+  h1 {
+    font-size: 16px;
+    line-height: 34px;
+  }
+  .show {
+    width: 95%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 25px;
+    overflow-y: hidden;
+  }
+  .explain {
+    width: 99%;
+    height: 70px;
+    line-height: 70px;
+    font-size: 16px;
+    background-color: #eef1f6;
+    padding-left: 8px;
+    a {
+      margin-left: 10px;
+      color: blue;
+      opacity: 0.5;
+    }
+  }
+  .map {
+    padding: 20px;
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    #sell {
+      width: 600px;
+      height: 400px;
+    }
+  }
+}
+</style>
