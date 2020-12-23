@@ -216,7 +216,7 @@ export default {
         delivery: false
       },
       formLabelWidth: "90px"
-    }
+    };
   },
   methods: {
     tabledelAll() {
@@ -224,19 +224,19 @@ export default {
       //1.全选，删除所有
       //2.非全选，则删除已经选中的数据
 
-      this.tableData = []
+      this.tableData = [];
     },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
-        })
+          this.$refs.multipleTable.toggleRowSelection(row);
+        });
       } else {
-        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.clearSelection();
       }
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = val;
     },
     handleDelete() {
       this.$confirm("确定要删除吗", "提示", {
@@ -248,20 +248,20 @@ export default {
           this.$message({
             type: "success",
             message: "删除成功!"
-          })
+          });
         })
         .catch(() => {
           this.$message({
             type: "info",
             message: "已取消删除"
-          })
-        })
+          });
+        });
     },
     filterTag(value, row) {
-      return row.tag === value
+      return row.tag === value;
     }
   }
-}
+};
 </script>
 
 <style>
