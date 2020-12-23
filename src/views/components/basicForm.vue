@@ -44,7 +44,7 @@
               :show-all-levels="false"
             ></el-cascader>
           </el-form-item>
-          <el-form-item label="即时配送">
+          <el-form-item label="选择开关">
             <el-switch v-model="form.delivery"></el-switch>
           </el-form-item>
 
@@ -224,14 +224,14 @@ export default {
         //   ]
         // }
       ]
-    }
+    };
   },
   methods: {
     onSubmit() {
-      console.log("submit!")
+      console.log("submit!");
     }
   }
-}
+};
 </script>
 
 <style>
