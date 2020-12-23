@@ -68,7 +68,7 @@
             >
             </el-image>
           </div> </el-table-column
-        ><el-table-column prop="address" label="地址" width="120">
+        ><el-table-column prop="address" label="地址" width="240">
         </el-table-column>
 
         <el-table-column
@@ -131,7 +131,6 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page.sync="currentPage1"
-          page-size="10"
           layout="total, prev, pager, next"
           :total="500"
           :page-sizes="[10, 20, 30, 40]"
