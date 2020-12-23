@@ -53,12 +53,12 @@
         border
       >
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="ID" label="ID" width="120"></el-table-column>
-        <el-table-column prop="username" label="用户名" width="120">
+        <el-table-column prop="id" label="ID" width="120"></el-table-column>
+        <el-table-column prop="name" label="用户名" width="120">
         </el-table-column>
         <el-table-column prop="balance" label="账户余额" width="120">
         </el-table-column
-        ><el-table-column prop="userIcon" label="头像(查看大图)" width="120">
+        ><el-table-column prop="usericon" label="头像(查看大图)" width="120">
           <!-- 头像图片 -->
           <div class="demo-image__preview">
             <el-image
@@ -86,7 +86,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="regTime" label="注册时间" width="120">
+        <el-table-column prop="retime" label="注册时间" width="120">
         </el-table-column>
         <el-table-column prop="handle" label="操作" show-overflow-tooltip>
           <template slot-scope="scope">
@@ -128,10 +128,13 @@
       </el-table>
       <div class="tableFooter">
         <el-pagination
-          :page-size="100"
-          background
-          layout="prev, pager, next"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage1"
+          page-size="10"
+          layout="total, prev, pager, next"
           :total="500"
+          :page-sizes="[10, 20, 30, 40]"
         >
         </el-pagination>
       </div>
@@ -140,6 +143,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
   username: "basicTable",
   data() {
@@ -160,48 +164,6 @@ export default {
         }
       ],
       value: "",
-      tableData: [
-        {
-          ID: 1,
-          username: "王小虎",
-          balance: 100,
-          userIcon: "img",
-          address: "上海市普陀区",
-          tag: "失败",
-          regTime: "2020-10-10",
-          handle: "修改"
-        },
-        {
-          ID: 2,
-          username: "王小虎",
-          balance: 200,
-          userIcon: "img",
-          address: "上海市普陀区",
-          tag: "成功",
-          regTime: "2020-10-10",
-          handle: "修改"
-        },
-        {
-          ID: 3,
-          username: "王小虎",
-          balance: 200,
-          userIcon: "img",
-          address: "上海市普陀区",
-          tag: "失败",
-          regTime: "2020-10-10",
-          handle: "修改"
-        },
-        {
-          ID: 4,
-          username: "王小虎",
-          balance: 200,
-          userIcon: "img",
-          address: "上海市普陀区",
-          tag: "成功",
-          regTime: "2020-10-10",
-          handle: "修改"
-        }
-      ],
       multipleSelection: [],
       url:
         "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
@@ -215,28 +177,36 @@ export default {
         address: "",
         delivery: false
       },
-      formLabelWidth: "90px"
-    };
+      formLabelWidth: "90px",
+      currentPage1: 5
+    }
   },
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
+    },
     tabledelAll() {
       //判断是否批量删除
       //1.全选，删除所有
       //2.非全选，则删除已经选中的数据
+      // console.log(this.basicList)
 
-      this.tableData = [];
+      this.tableData = []
     },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val
     },
     handleDelete() {
       this.$confirm("确定要删除吗", "提示", {
@@ -248,20 +218,28 @@ export default {
           this.$message({
             type: "success",
             message: "删除成功!"
-          });
+          })
         })
         .catch(() => {
           this.$message({
             type: "info",
             message: "已取消删除"
-          });
-        });
+          })
+        })
     },
     filterTag(value, row) {
-      return row.tag === value;
+      return row.tag === value
     }
+  },
+  computed: {
+    ...mapState({
+      tableData: state => state.basicList
+    })
+  },
+  created() {
+    // console.log(this.basicList[0].data)
   }
-};
+}
 </script>
 
 <style>

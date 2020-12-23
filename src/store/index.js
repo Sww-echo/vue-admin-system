@@ -1,7 +1,7 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from "vue"
+import Vuex from "vuex"
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
@@ -96,71 +96,75 @@ export default new Vuex.Store({
   mutations: {
     // 将请求来的数据赋值给basicList
     addBasicList(state, list) {
-      state.basicList = list;
+      list[0].data.map(item => {
+        let aa = Math.random() > 0.5 ? "成功" : "失败"
+        item.tag = aa
+      })
+      state.basicList = list[0].data
     },
     // 标记为已读
     markReaded: function(state, scope) {
-      state.readed.push(state.unread[scope.$index]);
-      state.unread.splice([scope.$index], 1);
+      state.readed.push(state.unread[scope.$index])
+      state.unread.splice([scope.$index], 1)
     },
     // 标记全部
     allMarkReaded: function(state) {
-      state.readed = state.readed.concat(state.unread);
-      state.unread = [];
+      state.readed = state.readed.concat(state.unread)
+      state.unread = []
     },
     // 删除已读
     deleteHandle: function(state, scope) {
-      state.recycle.push(state.readed[scope.$index]);
-      state.readed.splice(scope.$index, 1);
+      state.recycle.push(state.readed[scope.$index])
+      state.readed.splice(scope.$index, 1)
     },
     // 删除全部
     allDeleteHandle: function(state) {
-      state.recycle = state.recycle.concat(state.readed);
-      state.readed = [];
+      state.recycle = state.recycle.concat(state.readed)
+      state.readed = []
     },
     // 清空回收站
     emptyAll: function(state) {
-      state.recycle = [];
+      state.recycle = []
     },
     // 回收站还原
     restore: function(state, scope) {
-      state.readed = state.readed.concat(state.recycle[scope.$index]);
-      state.recycle.splice(scope.$index, 1);
+      state.readed = state.readed.concat(state.recycle[scope.$index])
+      state.recycle.splice(scope.$index, 1)
     },
     // 清空某个数组从而清空整个组件一部分
     empty: function(state, com) {
-      state[com] = [];
+      state[com] = []
     },
     //  添加顶部tag
     addNav(state, path) {
       // console.log(111);
-      let a = state.sidebarList.filter(item => item.path === path);
-      let index = state.navTopList.findIndex(val => val.path === path);
+      let a = state.sidebarList.filter(item => item.path === path)
+      let index = state.navTopList.findIndex(val => val.path === path)
       if (index === -1) {
-        state.navTopList.push(a[0]);
+        state.navTopList.push(a[0])
       }
     },
     // 清空顶部tag
     remNavTop(state) {
-      console.log(111);
+      console.log(111)
       state.navTopList = [
         {
           path: "/",
           name: "home",
           label: "系统首页"
         }
-      ];
+      ]
     },
     // 接收传递过来的当前显示页
     changeShow(state, name) {
-      state.nowShow = name;
+      state.nowShow = name
     },
     // 关闭其他
     remoElseNav(state) {
       let a = state.navTopList.filter(item => {
-        return item.path === state.nowShow;
-      });
-      state.navTopList = a;
+        return item.path === state.nowShow
+      })
+      state.navTopList = a
     }
   },
   // actions: {
@@ -184,4 +188,4 @@ export default new Vuex.Store({
   //   },
   // },
   modules: {}
-});
+})
