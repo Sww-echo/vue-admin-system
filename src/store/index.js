@@ -90,9 +90,14 @@ export default new Vuex.Store({
         label: "国际化功能"
       }
     ],
+    basicList: [],
     nowShow: "/"
   },
   mutations: {
+    // 将请求来的数据赋值给basicList
+    addBasicList(state, list) {
+      state.basicList = list;
+    },
     // 标记为已读
     markReaded: function(state, scope) {
       state.readed.push(state.unread[scope.$index]);
@@ -122,7 +127,6 @@ export default new Vuex.Store({
       state.readed = state.readed.concat(state.recycle[scope.$index]);
       state.recycle.splice(scope.$index, 1);
     },
-
     // 清空某个数组从而清空整个组件一部分
     empty: function(state, com) {
       state[com] = [];
