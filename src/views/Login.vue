@@ -46,8 +46,8 @@ export default {
     //这里存放数据
     return {
       form: {
-        username: "",
-        password: ""
+        username: "admin",
+        password: "admin"
       },
       rules: {
         username: [
