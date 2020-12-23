@@ -12,6 +12,7 @@
             v-model="form.password"
             placeholder="密码"
             show-password
+            @keydown.enter.native="handleLogin('loginForm')"
           ></el-input>
         </el-form-item>
         <el-form-item>
