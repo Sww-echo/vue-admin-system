@@ -177,14 +177,9 @@ export default {
         address: "",
         delivery: false
       },
-<<<<<<< HEAD
-      formLabelWidth: "90px"
-    };
-=======
       formLabelWidth: "90px",
       currentPage1: 5
     }
->>>>>>> 1533c47012b2beb7f1519d25c6ec03e25eabbb89
   },
   methods: {
     handleSizeChange(val) {
