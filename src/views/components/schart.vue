@@ -84,9 +84,13 @@ export default {
         text: "服装品类销售饼状图",
         left: "center"
       },
+      tooltip: {
+        trigger: "item"
+      },
       series: [
         {
           type: "pie",
+
           data: [
             { value: "334", name: "T恤" },
             { value: "278", name: "牛仔裤" },
@@ -96,7 +100,14 @@ export default {
             { value: "200", name: "短裙" },
             { value: "141", name: "羽绒服" }
           ],
-          legendHoverLink: true //是否启用图例 hover 时的联动高亮
+          legendHoverLink: true, //是否启用图例 hover 时的联动高亮
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)"
+            }
+          }
         }
       ],
       legend: {
