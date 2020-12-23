@@ -7,8 +7,7 @@
       <el-button @click="changeLanguageEn">切换英文</el-button>
       <el-button @click="changeLanguageCh">切换中文</el-button>
       <p>{{$t('msg.info')}} <a href="https://element.eleme.cn/2.0/#/zh-CN/component/i18n">{{$t('msg.value')}}</a></p>
-
-      <el-carousel  type="card">
+      <el-carousel :interval="3000" type="card">
         <el-carousel-item v-for=" (item , key) in $t('text') " v-bind:key="key">
           <h3>{{item}}</h3>
         </el-carousel-item>

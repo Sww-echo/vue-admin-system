@@ -46,8 +46,8 @@ export default {
     //这里存放数据
     return {
       form: {
-        username: "",
-        password: ""
+        username: "admin",
+        password: "admin"
       },
       rules: {
         username: [
@@ -116,6 +116,7 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     let flag = localStorage.getItem("is_login");
+    console.log(flag);
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
