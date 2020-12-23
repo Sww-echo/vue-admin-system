@@ -12,6 +12,7 @@
             v-model="form.password"
             placeholder="密码"
             show-password
+            @keydown.enter.native="handleLogin('loginForm')"
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -36,7 +37,6 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import { login } from "@/api/api";
-import { mapMutations, mapState } from "vuex";
 export default {
   name: "login",
   //import引入的组件需要注入到对象中才能使用
@@ -68,20 +68,13 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {
-    ...mapState({
-      login_show: state => state.is_login
-    })
-  },
+  computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
   methods: {
-    ...mapMutations({
-      loginFlag: "changeLogin"
-    }),
     handleLogin: function(loginForm) {
-      console.log("提交信息");
+      // console.log("提交信息");
       this.$refs[loginForm].validate(async valid => {
         if (valid) {
           // 发请求 拿数据
@@ -94,10 +87,9 @@ export default {
           // result.status === 0 登录没有成功
           if (result.status === 1) {
             this.$message("登录成功了");
-            // this.$router.push({"name":"Dashboard"}) => 嵌套路由第一次无法正确显示
-            localStorage.setItem("is_login", "true");
-            this.loginFlag(true);
+            localStorage.setItem("is_login", true);
             this.$router.push("/");
+            window.location.reload();
           } else {
             this.$message({
               message: "登录没有成功",
@@ -114,10 +106,16 @@ export default {
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
+<<<<<<< HEAD
   created() {
     let flag = localStorage.getItem("is_login");
     console.log(flag);
   },
+=======
+  // created() {
+  //   // let flag = localStorage.getItem("is_login");
+  // },
+>>>>>>> ca0adfcb2a58c5839012a6feaf9bc7fb2b56d387
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
@@ -132,12 +130,16 @@ export default {
 <style lang="scss" scoped>
 .myadmin-login {
   height: 100vh;
-  background-color: #324057;
+  background-image: url("../assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 -200px;
   padding-top: 30px;
 
   h1 {
     color: white;
     font-weight: 200;
+    font-size: 26px;
     text-align: center;
   }
 
@@ -148,6 +150,10 @@ export default {
     background-color: white;
     width: 300px;
     height: 300px;
+    opacity: 0.3;
+    &:hover {
+      opacity: 1;
+    }
     .login-button {
       width: 100%;
     }

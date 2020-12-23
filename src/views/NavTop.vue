@@ -15,7 +15,7 @@
         {{ tag.label }}
       </el-tag>
     </div>
-    <el-dropdown>
+    <el-dropdown class="drop_right">
       <el-button type="primary" size="mini">
         更多菜单<i class="el-icon-arrow-down el-icon--right"></i>
       </el-button>
@@ -74,8 +74,12 @@ export default {
   display: flex;
   justify-content: space-between;
   .el-tag {
-    margin: 4px 10px 0 0;
+    margin: 15px 6px 0 0;
     cursor: pointer;
+  }
+  .drop_right {
+    margin-right: 10px;
+    margin-top: 10px;
   }
 }
 </style>
