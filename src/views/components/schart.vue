@@ -9,8 +9,10 @@
         >
       </div>
       <div class="map">
-        <h2>柱状图</h2>
-        <div id="sell"></div>
+        <h2>图例</h2>
+        <div id="sellChart"></div>
+        <h2>饼状图</h2>
+        <div id="pieChart"></div>
       </div>
     </div>
   </div>
@@ -23,7 +25,8 @@ export default {
   mounted() {
     //挂载完成
     //初始化echarts实例
-    var myChart = echarts.init(document.getElementById("sell"));
+    var myChart = echarts.init(document.getElementById("sellChart"));
+    var mypieChart = echarts.init(document.getElementById("pieChart"));
     //指定图表的配置项和数据
     var option = {
       title: {
@@ -44,8 +47,12 @@ export default {
           magicType: {
             type: ["line", "bar", "stack", "tiled"]
           },
-          restore: { title: "还原" }
+          restore: { title: "还原" },
+          saveAsImage: {}
         }
+      },
+      tooltip: {
+        trigger: "axis"
       },
       xAxis: {
         data: ["周一", "周二", "周三", "周四", "周五"],
@@ -71,8 +78,34 @@ export default {
         }
       ]
     };
-
     myChart.setOption(option);
+    var optionPie = {
+      title: {
+        text: "服装品类销售饼状图",
+        left: "center"
+      },
+      series: [
+        {
+          type: "pie",
+          data: [
+            { value: "334", name: "T恤" },
+            { value: "278", name: "牛仔裤" },
+            { value: "190", name: "连衣裙" },
+            { value: "235", name: "毛衣" },
+            { value: "260", name: "七分裤" },
+            { value: "200", name: "短裙" },
+            { value: "141", name: "羽绒服" }
+          ],
+          legendHoverLink: true //是否启用图例 hover 时的联动高亮
+        }
+      ],
+      legend: {
+        orient: "vertical", //图例列表的布局朝向horizontal  vertical
+        left: "left",
+        data: ["T恤", "牛仔裤", "连衣裙", "毛衣", "七分裤", "短裙", "羽绒服"]
+      }
+    };
+    mypieChart.setOption(optionPie);
   }
 };
 </script>
@@ -80,18 +113,16 @@ export default {
 <style lang="scss">
 .page {
   padding: 10px;
-  overflow-x: hidden;
+  //   overflow-x: hidden;
   h1 {
     font-size: 16px;
     line-height: 34px;
   }
   .show {
     width: 95%;
-    height: 100%;
     background-color: #ffffff;
     border-radius: 5px;
     padding: 25px;
-    overflow-y: hidden;
   }
   .explain {
     width: 99%;
@@ -114,9 +145,15 @@ export default {
       margin-top: 40px;
       margin-bottom: 20px;
     }
-    #sell {
+    #sellChart {
       width: 600px;
       height: 400px;
+      background-color: #cccccc;
+    }
+    #pieChart {
+      width: 600px;
+      height: 400px;
+      background-color: #cccccc;
     }
   }
 }
