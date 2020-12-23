@@ -30,17 +30,16 @@ export default {
   async created() {
     this.is_login = localStorage.getItem("is_login");
     console.log(this.is_login);
-    for (let i = 0; i < 50; i++) {
-      // http://rap2api.taobao.org/app/mock/data/1832192
-      await axios
-        .get("/app/mock/data/1832192")
-        .then(res => {
-          this.list.push(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+    // http://rap2api.taobao.org/app/mock/data/1832192
+    await axios
+      .get("/app/mock/data/1832192")
+      .then(res => {
+        this.list.push(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     this.addList(this.list);
     console.log(this.list);
   }
