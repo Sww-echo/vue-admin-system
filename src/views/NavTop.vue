@@ -74,7 +74,7 @@ export default {
   display: flex;
   justify-content: space-between;
   .el-tag {
-    margin: 10px 10px 0 0;
+    margin: 15px 6px 0 0;
     cursor: pointer;
   }
   .drop_right {

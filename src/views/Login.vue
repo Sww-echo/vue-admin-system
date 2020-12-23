@@ -12,6 +12,7 @@
             v-model="form.password"
             placeholder="密码"
             show-password
+            @keydown.enter.native="handleLogin('loginForm')"
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -45,8 +46,8 @@ export default {
     //这里存放数据
     return {
       form: {
-        username: "",
-        password: ""
+        username: "admin",
+        password: "admin"
       },
       rules: {
         username: [
@@ -105,9 +106,16 @@ export default {
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
+<<<<<<< HEAD
+  created() {
+    let flag = localStorage.getItem("is_login");
+    console.log(flag);
+  },
+=======
   // created() {
   //   // let flag = localStorage.getItem("is_login");
   // },
+>>>>>>> ca0adfcb2a58c5839012a6feaf9bc7fb2b56d387
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
