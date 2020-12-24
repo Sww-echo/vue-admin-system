@@ -278,6 +278,7 @@ export default {
           div {
             background: #fff;
             display: flex;
+            border-radius: 4px;
             &:hover {
               box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
             }
@@ -291,6 +292,7 @@ export default {
               text-align: center;
               line-height: 100px;
               color: #fff;
+              border-radius: 4px 0 0 4px;
             }
             .icon1 {
               background: #2d8cf0;

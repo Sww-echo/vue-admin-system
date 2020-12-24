@@ -21,7 +21,7 @@
             <el-table-column width="160px">
               <template slot-scope="scope">
                 <el-button type="plain" @click="markReaded(scope)"
-                  >标位已读</el-button
+                  >标为已读</el-button
                 >
               </template>
             </el-table-column>
@@ -144,6 +144,7 @@ export default {
 <style lang="scss" scoped>
 .tabOption {
   padding: 10px;
+  box-sizing: border-box;
   .message {
     padding-right: 5px;
   }

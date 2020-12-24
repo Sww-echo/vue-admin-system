@@ -7,7 +7,7 @@ import * as echarts from "echarts";
 export default {
   name: "pieChart",
   mounted() {
-    var mypieChart = echarts.init(document.getElementById("pieChart"));
+    var mypieChart = echarts.init(this.$refs.pieChart);
     var optionPie = {
       title: {
         text: "服装品类销售饼状图",
@@ -19,7 +19,6 @@ export default {
       series: [
         {
           type: "pie",
-
           data: [
             { value: "334", name: "T恤" },
             { value: "278", name: "牛仔裤" },
