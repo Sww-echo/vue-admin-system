@@ -6,16 +6,16 @@
 </template>
 
 <script>
-import Home from "./views/Home";
-import login from "@/views/Login";
-import axios from "axios";
-import { mapMutations } from "vuex";
+import Home from "./views/Home"
+import login from "@/views/Login"
+import axios from "axios"
+import { mapMutations } from "vuex"
 export default {
   data() {
     return {
       is_login: false,
       list: []
-    };
+    }
   },
   components: {
     [Home.name]: Home,
@@ -28,22 +28,22 @@ export default {
     })
   },
   async created() {
-    this.is_login = localStorage.getItem("is_login");
-    console.log(this.is_login);
+    this.is_login = localStorage.getItem("is_login")
+    // console.log(this.is_login)
     // http://rap2api.taobao.org/app/mock/data/1832192
     await axios
       .get("/app/mock/data/1832192")
       .then(res => {
-        this.list.push(res.data);
+        this.list.push(res.data)
       })
       .catch(err => {
-        console.log(err);
-      });
+        console.log(err)
+      })
 
-    this.addList(this.list);
-    console.log(this.list);
+    this.addList(this.list)
+    // console.log(this.list)
   }
-};
+}
 </script>
 
 <style lang="scss"></style>

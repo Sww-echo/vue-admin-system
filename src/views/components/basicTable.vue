@@ -119,7 +119,8 @@
             <el-button
               size="mini"
               type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
+              props="id"
+              @click="handleDelete(scope.$index, scope.row, id)"
               class="tableDel"
               >删除</el-button
             >
@@ -192,22 +193,21 @@ export default {
       //1.全选，删除所有
       //2.非全选，则删除已经选中的数据
       // console.log(this.basicList)
-
-      this.tableData = [];
     },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val
     },
-    handleDelete() {
+    handleDelete(a, b, id) {
+      console.log(this)
       this.$confirm("确定要删除吗", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -217,17 +217,17 @@ export default {
           this.$message({
             type: "success",
             message: "删除成功!"
-          });
+          })
         })
         .catch(() => {
           this.$message({
             type: "info",
             message: "已取消删除"
-          });
-        });
+          })
+        })
     },
     filterTag(value, row) {
-      return row.tag === value;
+      return row.tag === value
     }
   },
   computed: {
@@ -238,7 +238,7 @@ export default {
   created() {
     // console.log(this.basicList[0].data)
   }
-};
+}
 </script>
 
 <style>
