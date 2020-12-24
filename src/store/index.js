@@ -131,10 +131,6 @@ export default new Vuex.Store({
       state.readed = state.readed.concat(state.recycle[scope.$index]);
       state.recycle.splice(scope.$index, 1);
     },
-    // 清空某个数组从而清空整个组件一部分
-    empty: function(state, com) {
-      state[com] = [];
-    },
     //  添加顶部tag
     addNav(state, path) {
       // console.log(111);
