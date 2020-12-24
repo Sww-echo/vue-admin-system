@@ -99,13 +99,14 @@ export default {
   watch: {
     $route(to) {
       this.changeNowShow(to.path);
+      this.addNavList(to.path);
     }
   },
   methods: {
     // 点击菜单列
     handleSelect(path) {
-      console.log(this.nowShow);
-      console.log(path);
+      // console.log(this.nowShow);
+      // console.log(path);
       this.addNavList(path);
       // 传递当前显示页
       this.changeNowShow(path);
@@ -114,14 +115,20 @@ export default {
       this.isCollapse = !this.isCollapse;
     },
     ...mapMutations({
-      addNavList: "addNav",
-      changeNowShow: "changeShow"
+      addNavList: "home/addNav",
+      changeNowShow: "home/changeShow"
     })
   },
   computed: {
     ...mapState({
-      nowShow: state => state.nowShow
+      nowShow: state => state.home.nowShow
     })
+  },
+  mounted() {
+    // console.log(window.location);
+    if (window.location.hash === "#/") {
+      this.addNavList("/");
+    }
   }
 };
 </script>
@@ -151,13 +158,13 @@ export default {
   width: 100%;
   position: relative;
   .page {
+    background-color: #f0f0f0;
     position: absolute;
     width: 100%;
     height: calc(100% - 30px);
     top: 50px;
     left: 0;
     bottom: 0;
-    background: #fff;
     overflow-y: auto;
   }
 }

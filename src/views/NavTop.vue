@@ -40,30 +40,30 @@ export default {
     },
     // 点击tag标签
     handleClick(tag) {
-      console.log(tag);
+      // console.log(tag);
       this.$router.push(tag.path);
-      console.log(this.$route);
+      // console.log(this.$route);
     },
     // 关闭其他
     remElse() {
-      console.log(this.nowShow);
+      // console.log(this.nowShow);
       this.remoElseTag();
     },
     // 关闭所有
     remAll() {
       this.removeTag();
-      console.log(this);
+      // console.log(this);
       this.$router.push("/");
     },
     ...mapMutations({
-      removeTag: "remNavTop",
-      remoElseTag: "remoElseNav"
+      removeTag: "home/remNavTop",
+      remoElseTag: "home/remoElseNav"
     })
   },
   computed: {
     ...mapState({
-      tags: state => state.navTopList,
-      nowShow: state => state.nowShow
+      tags: state => state.home.navTopList,
+      nowShow: state => state.home.nowShow
     })
   }
 };

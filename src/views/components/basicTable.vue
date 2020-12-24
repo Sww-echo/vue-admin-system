@@ -131,7 +131,7 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page.sync="currentPage1"
-          page-size="10"
+          page-size.Number="10"
           layout="total, prev, pager, next"
           :total="500"
           :page-sizes="[10, 20, 30, 40]"
@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapState, mapActions } from "vuex";
 export default {
   username: "basicTable",
   data() {
@@ -179,14 +179,17 @@ export default {
       },
       formLabelWidth: "90px",
       currentPage1: 5
-    }
+    };
   },
   methods: {
+    ...mapActions({
+      getBasicTableList: "basicTable/getBasicTableList"
+    }),
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+      console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      console.log(`当前页: ${val}`);
     },
     tabledelAll() {
       //判断是否批量删除
@@ -233,11 +236,11 @@ export default {
   },
   computed: {
     ...mapState({
-      tableData: state => state.basicList
+      tableData: state => state.basicTable.basicList
     })
   },
   created() {
-    // console.log(this.basicList[0].data)
+    this.getBasicTableList();
   }
 };
 </script>
