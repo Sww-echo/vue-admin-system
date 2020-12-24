@@ -45,6 +45,7 @@ export default {
       .card_top {
         padding: 20px;
         margin-bottom: 20px;
+        background-color: #f9f9f9;
         &:hover {
           box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
         }
@@ -70,7 +71,7 @@ export default {
         .bot_box {
           color: #999;
           .bot_box1 {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
           }
           span {
             margin-left: 70px;
