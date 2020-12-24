@@ -8,13 +8,10 @@
 <script>
 import Home from "./views/Home"
 import login from "@/views/Login"
-import axios from "axios"
-import { mapMutations } from "vuex"
 export default {
   data() {
     return {
-      is_login: false,
-      list: []
+      is_login: false
     }
   },
   components: {
@@ -22,26 +19,10 @@ export default {
     [login.name]: login
   },
   computed: {},
-  methods: {
-    ...mapMutations({
-      addList: "addBasicList"
-    })
-  },
-  async created() {
+  methods: {},
+  created() {
     this.is_login = localStorage.getItem("is_login")
-    // console.log(this.is_login)
-    // http://rap2api.taobao.org/app/mock/data/1832192
-    await axios
-      .get("/app/mock/data/1832192")
-      .then(res => {
-        this.list.push(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
-    this.addList(this.list)
-    // console.log(this.list)
+    // console.log(this.is_login);
   }
 }
 </script>
