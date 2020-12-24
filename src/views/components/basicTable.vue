@@ -131,7 +131,7 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page.sync="currentPage1"
-          page-size="10"
+          page-size.Number="10"
           layout="total, prev, pager, next"
           :total="500"
           :page-sizes="[10, 20, 30, 40]"
@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   username: "basicTable",
   data() {
@@ -182,6 +182,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      getBasicTableList: "basicTable/getBasicTableList"
+    }),
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
@@ -233,11 +236,11 @@ export default {
   },
   computed: {
     ...mapState({
-      tableData: state => state.basicList
+      tableData: state => state.basicTable.basicList
     })
   },
   created() {
-    // console.log(this.basicList[0].data)
+    this.getBasicTableList();
   }
 };
 </script>
