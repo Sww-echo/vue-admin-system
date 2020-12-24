@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex"
+import { mapState, mapActions } from "vuex";
 export default {
   username: "basicTable",
   data() {
@@ -180,17 +180,17 @@ export default {
       },
       formLabelWidth: "90px",
       currentPage1: 5
-    }
+    };
   },
   methods: {
     ...mapActions({
       getBasicTableList: "basicTable/getBasicTableList"
     }),
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+      console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      console.log(`当前页: ${val}`);
     },
     tabledelAll() {
       //判断是否批量删除
@@ -201,17 +201,17 @@ export default {
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
-        })
+          this.$refs.multipleTable.toggleRowSelection(row);
+        });
       } else {
-        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.clearSelection();
       }
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = val;
     },
     handleDelete() {
-      console.log(this)
+      console.log(this);
       this.$confirm("确定要删除吗", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -221,17 +221,17 @@ export default {
           this.$message({
             type: "success",
             message: "删除成功!"
-          })
+          });
         })
         .catch(() => {
           this.$message({
             type: "info",
             message: "已取消删除"
-          })
-        })
+          });
+        });
     },
     filterTag(value, row) {
-      return row.tag === value
+      return row.tag === value;
     }
   },
   computed: {
@@ -240,9 +240,9 @@ export default {
     })
   },
   created() {
-    this.getBasicTableList()
+    this.getBasicTableList();
   }
-}
+};
 </script>
 
 <style>

@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import Home from "./views/Home"
-import login from "@/views/Login"
+import Home from "./views/Home";
+import login from "@/views/Login";
 export default {
   data() {
     return {
       is_login: false
-    }
+    };
   },
   components: {
     [Home.name]: Home,
@@ -21,10 +21,10 @@ export default {
   computed: {},
   methods: {},
   created() {
-    this.is_login = localStorage.getItem("is_login")
+    this.is_login = localStorage.getItem("is_login");
     // console.log(this.is_login);
   }
-}
+};
 </script>
 
 <style lang="scss"></style>

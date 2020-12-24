@@ -54,11 +54,11 @@ export default {
   border-radius: 5px;
   border: 1px solid #ddd;
 }
-.el-i{
+.el-i {
   color: #000;
   margin: 10px 0;
   font-size: 12px;
-  a{
+  a {
     color: slateblue;
   }
 }
