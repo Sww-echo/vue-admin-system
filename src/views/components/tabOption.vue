@@ -8,15 +8,8 @@
     <div class="main-wrap">
       <el-tabs v-model="activeName">
         <!-- 未读消息 -->
-        <el-tab-pane
-          :label="`未读消息(${this.$store.state.unread.length})`"
-          name="first"
-        >
-          <el-table
-            :data="this.$store.state.unread"
-            type="flex"
-            :show-header="false"
-          >
+        <el-tab-pane :label="`未读消息(${unread.length})`" name="first">
+          <el-table :data="unread" type="flex" :show-header="false">
             <el-table-column>
               <template slot-scope="scope">
                 <div class="column1">
@@ -38,15 +31,8 @@
           >
         </el-tab-pane>
         <!-- 已读消息 -->
-        <el-tab-pane
-          :label="`已读消息(${this.$store.state.readed.length})`"
-          name="second"
-        >
-          <el-table
-            :data="this.$store.state.readed"
-            type="flex"
-            :show-header="false"
-          >
+        <el-tab-pane :label="`已读消息(${readed.length})`" name="second">
+          <el-table :data="readed" type="flex" :show-header="false">
             <el-table-column>
               <template slot-scope="scope">
                 <div class="column1">
@@ -68,15 +54,8 @@
           >
         </el-tab-pane>
         <!-- 回收站 -->
-        <el-tab-pane
-          :label="`回收站(${this.$store.state.recycle.length})`"
-          name="third"
-        >
-          <el-table
-            :data="this.$store.state.recycle"
-            type="flex"
-            :show-header="false"
-          >
+        <el-tab-pane :label="`回收站(${recycle.length})`" name="third">
+          <el-table :data="recycle" type="flex" :show-header="false">
             <el-table-column>
               <template slot-scope="scope">
                 <div class="column1">
@@ -101,7 +80,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "tabOption",
   data() {
@@ -110,6 +89,14 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({
+      markReadedNew: "tabOption/markReaded",
+      allMarkReadedNew: "tabOption/allMarkReaded",
+      deleteHandleNew: "tabOption/deleteHandle",
+      allDeleteHandleNew: "tabOption/allDeleteHandle",
+      emptyAllNew: "tabOption/emptyAll",
+      restoreNew: "tabOption/restore"
+    }),
     // 标记为已读
     markReaded: function(scope) {
       // this.$store.dispatch('markReadedA',scope)
@@ -139,20 +126,18 @@ export default {
     restore: function(scope) {
       // this.$store.dispatch('restoreA',scope)
       this.restoreNew(scope);
-    },
-    ...mapMutations({
-      markReadedNew: "markReaded",
-      allMarkReadedNew: "allMarkReaded",
-      deleteHandleNew: "deleteHandle",
-      allDeleteHandleNew: "allDeleteHandle",
-      emptyAllNew: "emptyAll",
-      restoreNew: "restore"
-    })
+    }
   },
   created() {
-    console.log(this.$store);
+    // console.log(this.$store);
   },
-  computed: {}
+  computed: {
+    ...mapState({
+      unread: state => state.tabOption.unread,
+      readed: state => state.tabOption.readed,
+      recycle: state => state.tabOption.recycle
+    })
+  }
 };
 </script>
 
