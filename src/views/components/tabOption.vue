@@ -80,13 +80,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex"
 export default {
   name: "tabOption",
   data() {
     return {
       activeName: "first"
-    };
+    }
   },
   methods: {
     ...mapMutations({
@@ -100,32 +100,32 @@ export default {
     // 标记为已读
     markReaded: function(scope) {
       // this.$store.dispatch('markReadedA',scope)
-      this.markReadedNew(scope);
+      this.markReadedNew(scope)
     },
     // 标记全部
     allMarkReaded: function() {
       // this.$store.dispatch('allMarkReadedA')
-      this.allMarkReadedNew();
+      this.allMarkReadedNew()
     },
     // 删除已读信息
     deleteHandle: function(scope) {
       // this.$store.dispatch('deleteHandleA',scope)
-      this.deleteHandleNew(scope);
+      this.deleteHandleNew(scope)
     },
     // 删除所有的信息
     allDeleteHandle: function() {
       // this.$store.dispatch('allDeleteHandleA')
-      this.allDeleteHandleNew();
+      this.allDeleteHandleNew()
     },
     // 清空所有的信息
     emptyAll: function() {
       // this.$store.dispatch('emptyAllA')
-      this.emptyAllNew();
+      this.emptyAllNew()
     },
     // 还原
     restore: function(scope) {
       // this.$store.dispatch('restoreA',scope)
-      this.restoreNew(scope);
+      this.restoreNew(scope)
     }
   },
   created() {
@@ -138,7 +138,7 @@ export default {
       recycle: state => state.tabOption.recycle
     })
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

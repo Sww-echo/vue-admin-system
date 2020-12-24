@@ -68,7 +68,7 @@
             >
             </el-image>
           </div> </el-table-column
-        ><el-table-column prop="address" label="地址" width="120">
+        ><el-table-column prop="address" label="地址" width="240">
         </el-table-column>
 
         <el-table-column
@@ -119,6 +119,7 @@
             <el-button
               size="mini"
               type="danger"
+              props="id"
               @click="handleDelete(scope.$index, scope.row)"
               class="tableDel"
               >删除</el-button
@@ -143,7 +144,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex"
 export default {
   username: "basicTable",
   data() {
@@ -179,39 +180,38 @@ export default {
       },
       formLabelWidth: "90px",
       currentPage1: 5
-    };
+    }
   },
   methods: {
     ...mapActions({
       getBasicTableList: "basicTable/getBasicTableList"
     }),
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      console.log(`每页 ${val} 条`)
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      console.log(`当前页: ${val}`)
     },
     tabledelAll() {
       //判断是否批量删除
       //1.全选，删除所有
       //2.非全选，则删除已经选中的数据
       // console.log(this.basicList)
-
-      this.tableData = [];
     },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val
     },
     handleDelete() {
+      console.log(this)
       this.$confirm("确定要删除吗", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -221,17 +221,17 @@ export default {
           this.$message({
             type: "success",
             message: "删除成功!"
-          });
+          })
         })
         .catch(() => {
           this.$message({
             type: "info",
             message: "已取消删除"
-          });
-        });
+          })
+        })
     },
     filterTag(value, row) {
-      return row.tag === value;
+      return row.tag === value
     }
   },
   computed: {
@@ -240,9 +240,9 @@ export default {
     })
   },
   created() {
-    this.getBasicTableList();
+    this.getBasicTableList()
   }
-};
+}
 </script>
 
 <style>
