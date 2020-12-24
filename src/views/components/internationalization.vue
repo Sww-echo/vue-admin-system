@@ -8,23 +8,15 @@
     <div class="internation-main main-wrap">
       <el-button @click="changeLanguageEn">切换英文</el-button>
       <el-button @click="changeLanguageCh">切换中文</el-button>
-<<<<<<< HEAD
-      <p>{{$t('msg.info')}} <a href="https://element.eleme.cn/2.0/#/zh-CN/component/i18n">{{$t('msg.value')}}</a></p>
-      <el-carousel :interval="3000" type="card">
-        <el-carousel-item v-for=" (item , key) in $t('text') " v-bind:key="key">
-          <h3>{{item}}</h3>
-=======
-      <p>
+      <p class="el-i">
         {{ $t("msg.info") }}
         <a href="https://element.eleme.cn/2.0/#/zh-CN/component/i18n">{{
           $t("msg.value")
         }}</a>
       </p>
-
       <el-carousel type="card">
         <el-carousel-item v-for="(item, key) in $t('text')" v-bind:key="key">
           <h3>{{ item }}</h3>
->>>>>>> ca0adfcb2a58c5839012a6feaf9bc7fb2b56d387
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -62,6 +54,14 @@ export default {
   border-radius: 5px;
   border: 1px solid #ddd;
 }
+.el-i{
+  color: #000;
+  margin: 10px 0;
+  font-size: 12px;
+  a{
+    color: slateblue;
+  }
+}
 .el-carousel__item h3 {
   color: #475669;
   font-size: 18px;
@@ -72,6 +72,7 @@ export default {
   text-align: center;
   align-items: center;
   justify-content: center;
+  padding: 0 4px;
 }
 
 .el-carousel__item:nth-child(2n) {

@@ -106,16 +106,9 @@ export default {
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-<<<<<<< HEAD
-  created() {
-    let flag = localStorage.getItem("is_login");
-    console.log(flag);
-  },
-=======
   // created() {
   //   // let flag = localStorage.getItem("is_login");
   // },
->>>>>>> ca0adfcb2a58c5839012a6feaf9bc7fb2b56d387
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
