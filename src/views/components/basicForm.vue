@@ -9,65 +9,77 @@
     </div>
     <div class="container">
       <div class="containerBox">
-        <el-form ref="form" :model="form" label-width="80px" size="small">
-          <el-form-item label="表单名称">
-            <el-input v-model="form.name"></el-input>
+        <el-form
+          :model="ruleForm"
+          :rules="rules"
+          ref="ruleForm"
+          label-width="100px"
+          class="demo-ruleForm"
+        >
+          <el-form-item label="表单名称" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
-          <el-form-item label="选择器">
-            <el-select v-model="form.region" placeholder="请选择">
-              <el-option label="步步高" value="BBk"></el-option>
+          <el-form-item label="选择器" prop="region">
+            <el-select v-model="ruleForm.region" placeholder="请选择">
+              <el-option label="步步高" value="bbk"></el-option>
               <el-option label="小天才" value="xiaotiancai"></el-option>
               <el-option label="imoo" value="imoo"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="日期时间">
+          <el-form-item label="日期时间" required>
             <el-col :span="11">
-              <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="form.date1"
-                style="width: 100%;"
-              ></el-date-picker>
+              <el-form-item prop="date1">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择日期"
+                  v-model="ruleForm.date1"
+                  style="width: 100%;"
+                ></el-date-picker>
+              </el-form-item>
             </el-col>
-            <el-col class="line" :span="2"> -</el-col>
+            <el-col class="line" :span="2">-</el-col>
             <el-col :span="11">
-              <el-time-picker
-                placeholder="选择时间"
-                v-model="form.date2"
-                style="width: 100%;"
-              ></el-time-picker>
+              <el-form-item prop="date2">
+                <el-time-picker
+                  placeholder="选择时间"
+                  v-model="ruleForm.date2"
+                  style="width: 100%;"
+                ></el-time-picker>
+              </el-form-item>
             </el-col>
           </el-form-item>
-          <el-form-item label="城市级联">
+          <el-form-item label="城市级联" prop="city">
             <el-cascader
               :options="options"
               :show-all-levels="false"
+              v-model="ruleForm.city"
             ></el-cascader>
           </el-form-item>
-          <el-form-item label="选择开关">
-            <el-switch v-model="form.delivery"></el-switch>
+          <el-form-item label="选择开关" prop="delivery">
+            <el-switch v-model="ruleForm.delivery"></el-switch>
           </el-form-item>
-
-          <el-form-item label="多选框">
-            <el-checkbox-group v-model="form.type">
+          <el-form-item label="多选框" prop="type">
+            <el-checkbox-group v-model="ruleForm.type">
               <el-checkbox label="步步高" name="type"></el-checkbox>
               <el-checkbox label="小天才" name="type"></el-checkbox>
               <el-checkbox label="imoo" name="type"></el-checkbox>
             </el-checkbox-group>
           </el-form-item>
-          <el-form-item label="单选框">
-            <el-radio-group v-model="form.resource">
+          <el-form-item label="单选框" prop="resource">
+            <el-radio-group v-model="ruleForm.resource">
               <el-radio label="步步高"></el-radio>
               <el-radio label="小天才"></el-radio>
               <el-radio label="imoo"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="文本框">
-            <el-input type="textarea" v-model="form.desc"></el-input>
+          <el-form-item label="文本框" prop="desc">
+            <el-input type="textarea" v-model="ruleForm.desc"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">提交表单</el-button>
-            <el-button>取消</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')"
+              >立即创建</el-button
+            >
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -80,11 +92,12 @@ export default {
   name: "basicForm",
   data() {
     return {
-      form: {
+      ruleForm: {
         name: "",
         region: "",
         date1: "",
         date2: "",
+        city: "",
         delivery: false,
         type: [],
         resource: "",
@@ -205,33 +218,56 @@ export default {
             }
           ]
         }
-        // {
-        //   value: "ziyuan",
-        //   label: "资源",
-        //   children: [
-        //     {
-        //       value: "axure",
-        //       label: "Axure Components"
-        //     },
-        //     {
-        //       value: "sketch",
-        //       label: "Sketch Templates"
-        //     },
-        //     {
-        //       value: "jiaohu",
-        //       label: "组件交互文档"
-        //     }
-        //   ]
-        // }
-      ]
-    };
+      ],
+      rules: {
+        name: [{ required: true, message: "请输入活动名称", trigger: "blur" }],
+        region: [{ required: true, message: "请选择", trigger: "change" }],
+        date1: [
+          {
+            type: "date",
+            required: true,
+            message: "请选择日期",
+            trigger: "change"
+          }
+        ],
+        date2: [
+          {
+            type: "date",
+            required: true,
+            message: "请选择时间",
+            trigger: "change"
+          }
+        ],
+        city: [{ required: true, message: "请选择", trigger: "change" }],
+        type: [
+          {
+            type: "array",
+            required: true,
+            message: "请至少选择一个",
+            trigger: "change"
+          }
+        ],
+        resource: [{ required: true, message: "请选择", trigger: "change" }],
+        desc: [{ required: true, message: "请填写", trigger: "blur" }]
+      }
+    }
   },
   methods: {
-    onSubmit() {
-      console.log("submit!");
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert("submit!")
+        } else {
+          console.log("error submit!!")
+          return false
+        }
+      })
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
     }
   }
-};
+}
 </script>
 
 <style>
@@ -262,5 +298,9 @@ export default {
 .containerBox {
   width: 520px;
   background: rgb(255, 255, 255);
+}
+.line {
+  width: 3.33333%;
+  margin-left: 10px;
 }
 </style>
