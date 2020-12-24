@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapState } from "vuex";
 export default {
   username: "basicTable",
   data() {
@@ -179,14 +179,14 @@ export default {
       },
       formLabelWidth: "90px",
       currentPage1: 5
-    }
+    };
   },
   methods: {
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+      console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      console.log(`当前页: ${val}`);
     },
     tabledelAll() {
       //判断是否批量删除

@@ -151,13 +151,13 @@ export default {
   width: 100%;
   position: relative;
   .page {
+    background-color: #f0f0f0;
     position: absolute;
     width: 100%;
     height: calc(100% - 30px);
     top: 50px;
     left: 0;
     bottom: 0;
-    background: #fff;
     overflow-y: auto;
   }
 }
