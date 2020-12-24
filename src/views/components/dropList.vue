@@ -11,11 +11,12 @@
         <div class="todo drag-box-item">
           <div class="drag-title">doing</div>
           <div class="drag-ul">
-<<<<<<< HEAD
-            <draggable v-model="todoList" group="item" animation="300">
-=======
-            <draggable v-model="todoList" group="item" animation="300"  @add="onAdd">
->>>>>>> 4f7e8ed8691a408ac20658dd74ec5368fc2f3f24
+            <draggable
+              v-model="todoList"
+              group="item"
+              animation="300"
+              @add="onAdd"
+            >
               <transition-group>
                 <div
                   v-for="item in todoList"
@@ -31,11 +32,12 @@
         <div class="doing drag-box-item">
           <div class="drag-title">todo</div>
           <div class="drag-ul">
-<<<<<<< HEAD
-            <draggable v-model="doingList" group="item" animation="300">
-=======
-            <draggable v-model="doingList" group="item" animation="300" @add="onAdd">
->>>>>>> 4f7e8ed8691a408ac20658dd74ec5368fc2f3f24
+            <draggable
+              v-model="doingList"
+              group="item"
+              animation="300"
+              @add="onAdd"
+            >
               <transition-group>
                 <div
                   v-for="item in doingList"
@@ -51,11 +53,12 @@
         <div class="done drag-box-item">
           <div class="drag-title">doing</div>
           <div class="drag-ul">
-<<<<<<< HEAD
-            <draggable v-model="doneList" group="item" animation="300">
-=======
-            <draggable v-model="doneList" group="item" animation="300" @add="onAdd">
->>>>>>> 4f7e8ed8691a408ac20658dd74ec5368fc2f3f24
+            <draggable
+              v-model="doneList"
+              group="item"
+              animation="300"
+              @add="onAdd"
+            >
               <transition-group>
                 <div
                   v-for="item in doneList"
@@ -138,12 +141,12 @@ export default {
       ]
     };
   },
-   methods: {
-    onAdd(ev){
-        // console.log(ev)
-        ev.from.removeChild(ev.item)
+  methods: {
+    onAdd(ev) {
+      // console.log(ev)
+      ev.from.removeChild(ev.item);
     }
-  },
+  }
 };
 </script>
 
@@ -160,7 +163,7 @@ export default {
   border-radius: 5px;
   border: 1px solid #ddd;
   box-sizing: border-box;
-  
+
   .drag-box {
     display: flex;
     user-select: none;
@@ -177,8 +180,8 @@ export default {
       .drag-ul {
         min-height: 400px;
         div span {
-            display: block;
-            min-height: 400px;
+          display: block;
+          min-height: 400px;
         }
       }
       .drag-title {
