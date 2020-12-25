@@ -15,7 +15,7 @@
         }}</a>
       </p>
         <div v-for="(item, key) in $t('text')" v-bind:key="key">
-          <h3>{{ item }}</h3>
+          <h3 class="changeWord">{{ item }}</h3>
         </div>
     </div>
   </div>
@@ -79,5 +79,14 @@ export default {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+.changeWord{
+  font-size: 14px;
+  line-height:20px;
+  font-weight: normal;
+  margin: 5px 0;
+  padding: 10px;
+  width: 100%;
+  background: rgb(225, 232, 250);
 }
 </style>
