@@ -1,4 +1,4 @@
-import axios from "axios";
+import happlyaxios from "../../myaxios/happlyaxios";
 export default {
   namespaced: true,
   state: {
@@ -18,11 +18,11 @@ export default {
   actions: {
     getBasicTableList(context) {
       // http://rap2api.taobao.org/app/mock/data/1832192
-      axios
-        .get("/app/mock/data/1832192")
+      happlyaxios
+        .get("from")
         .then(res => {
-          //   console.log(res.data.data);
-          context.commit("addBasicList", res.data.data);
+          // console.log(res.data);
+          context.commit("addBasicList", res.data);
         })
         .catch(err => {
           console.log(err);

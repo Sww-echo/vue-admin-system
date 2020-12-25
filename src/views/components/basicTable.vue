@@ -96,7 +96,7 @@
             <!-- 编辑弹框 -->
             <el-dialog title="编辑" :visible.sync="dialogVisible" width="30%">
               <el-form :model="form">
-                <el-form-item label="活动名称" :label-width="formLabelWidth">
+                <el-form-item label="用户名" :label-width="formLabelWidth">
                   <el-input
                     v-model="form.username"
                     autocomplete="off"

@@ -24,11 +24,6 @@ const routes = [
     component: () => import("../views/components/basicTable")
   },
   {
-    path: "/customicon",
-    name: "customIcon ",
-    component: () => import("../views/components/customIcon")
-  },
-  {
     path: "/droplist",
     name: "dropList ",
     component: () => import("../views/components/dropList")
