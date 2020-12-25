@@ -42,10 +42,6 @@
               <el-menu-item index="/fileupload">文件上传</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="/customicon">
-            <i class="el-icon-setting"></i>
-            <span slot="title">自定义图标</span>
-          </el-menu-item>
           <el-menu-item index="/schart">
             <i class="el-icon-setting"></i>
             <span slot="title">schart图表</span>

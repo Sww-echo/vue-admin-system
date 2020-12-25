@@ -147,6 +147,12 @@ export default {
         {
           id: "6",
           msg: "今天要写100个bug"
+        },
+        {
+          id: "7",
+          flag: true,
+
+          msg: "今天要写100个bug"
         }
       ]
     };
