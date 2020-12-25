@@ -153,6 +153,10 @@ export default {
         {
           id: "6",
           msg: "今天要写100个bug"
+        },
+        {
+          id: "7",
+          msg: "今天要写100个bug"
         }
       ]
     };
@@ -292,7 +296,7 @@ export default {
           font-weight: normal;
         }
         .lang {
-          padding: 20px 0;
+          padding: 10px 0;
           line-height: 20px;
         }
       }
