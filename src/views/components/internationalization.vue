@@ -14,11 +14,9 @@
           $t("msg.value")
         }}</a>
       </p>
-      <el-carousel type="card">
-        <el-carousel-item v-for="(item, key) in $t('text')" v-bind:key="key">
+        <div v-for="(item, key) in $t('text')" v-bind:key="key">
           <h3>{{ item }}</h3>
-        </el-carousel-item>
-      </el-carousel>
+        </div>
     </div>
   </div>
 </template>
