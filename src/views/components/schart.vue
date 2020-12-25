@@ -49,7 +49,6 @@ export default {
     height: 70px;
     line-height: 70px;
     font-size: 16px;
-    background-color: #eef1f6;
     padding-left: 8px;
     a {
       margin-left: 10px;
@@ -68,12 +67,10 @@ export default {
     #sellChart {
       width: 600px;
       height: 400px;
-      background-color: #cccccc;
     }
     #pieChart {
       width: 600px;
       height: 400px;
-      background-color: #cccccc;
     }
   }
 }

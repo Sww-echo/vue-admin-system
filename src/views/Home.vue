@@ -161,7 +161,7 @@ export default {
     background-color: #f0f0f0;
     position: absolute;
     width: 100%;
-    height: calc(100% - 30px);
+    height: calc(100% - 50px);
     top: 50px;
     left: 0;
     bottom: 0;

@@ -68,7 +68,7 @@
             >
             </el-image>
           </div> </el-table-column
-        ><el-table-column prop="address" label="地址" width="120">
+        ><el-table-column prop="address" label="地址" width="240">
         </el-table-column>
 
         <el-table-column
@@ -119,6 +119,7 @@
             <el-button
               size="mini"
               type="danger"
+              props="id"
               @click="handleDelete(scope.$index, scope.row)"
               class="tableDel"
               >删除</el-button
@@ -196,8 +197,6 @@ export default {
       //1.全选，删除所有
       //2.非全选，则删除已经选中的数据
       // console.log(this.basicList)
-
-      this.tableData = [];
     },
     toggleSelection(rows) {
       if (rows) {
@@ -212,6 +211,7 @@ export default {
       this.multipleSelection = val;
     },
     handleDelete() {
+      console.log(this);
       this.$confirm("确定要删除吗", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
