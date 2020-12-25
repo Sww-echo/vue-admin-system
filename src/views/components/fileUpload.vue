@@ -16,7 +16,7 @@
           >
         </p>
       </div>
-      <el-upload class="upload-demo" drag multiple>
+      <el-upload class="upload-demo" drag multiple :action="baseUrl">
         <i class="el-icon-upload"></i>
         <div class="el-upload_text">将文件拖到此处，或<em>点击上传</em></div>
         <!-- slot="tip " 提示说明文字 -->
@@ -28,9 +28,13 @@
   </div>
 </template>
 <script>
-// import { base_Url, baseImgPath } from "@/config/env";
 export default {
-  name: "fileUpload"
+  name: "fileUpload",
+  data: function() {
+    return {
+      baseUrl: "https://jsonplaceholder.typicode.com/posts/"
+    };
+  }
 };
 </script>
 <style lang="scss" scoped>
