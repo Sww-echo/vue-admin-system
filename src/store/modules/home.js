@@ -1,3 +1,4 @@
+import happlyaxios from "@/myaxios/happlyaxios";
 export default {
   namespaced: true,
   state: {
@@ -41,11 +42,6 @@ export default {
         label: "文件上传"
       },
       {
-        path: "/customicon",
-        name: "customicon",
-        label: "自定义图标"
-      },
-      {
         path: "/schart",
         name: "schart",
         label: "schart图表"
@@ -65,7 +61,15 @@ export default {
         name: "internationalization",
         label: "国际化功能"
       }
-    ]
+    ],
+    // 用户访问量
+    userVisit: null,
+    // 系统消息
+    systemNum: null,
+    // 数量
+    num: null,
+    // 语言详情
+    lang: []
   },
   mutations: {
     // 接收传递过来的当前显示页
@@ -92,13 +96,52 @@ export default {
         }
       ];
     },
+
     // 关闭其他
     remoElseNav(state) {
       let a = state.navTopList.filter(item => {
         return item.path === state.nowShow;
       });
       state.navTopList = a;
+    },
+    // 将请求来的数据赋值给state
+    addUserNum(state, num) {
+      state.userVisit = num;
+    },
+    addsystemmsg(state, num) {
+      state.systemNum = num;
+    },
+    addNum(state, num) {
+      state.num = num;
+    },
+    addLang(state, arr) {
+      state.lang = arr;
     }
   },
-  actions: {}
+  actions: {
+    getUser(context) {
+      happlyaxios.get("user").then(res => {
+        console.log(res);
+        context.commit("addUserNum", res.usernum);
+      });
+    },
+    getSystemNum(context) {
+      happlyaxios.get("systemmsg").then(res => {
+        console.log(res);
+        context.commit("addsystemmsg", res.sysnum);
+      });
+    },
+    getNum(context) {
+      happlyaxios.get("num").then(res => {
+        console.log(res);
+        context.commit("addNum", res.num);
+      });
+    },
+    getLang(context) {
+      happlyaxios.get("lang").then(res => {
+        console.log(res);
+        context.commit("addLang", res.numlist);
+      });
+    }
+  }
 };

@@ -35,7 +35,8 @@ export default {
       this.$emit("myCollapse");
     },
     handleClick() {
-      localStorage.setItem("is_login", false);
+      // localStorage.setItem("is_login", false);
+      localStorage.removeItem("is_login");
       window.location.reload();
     },
     handleClickGr() {

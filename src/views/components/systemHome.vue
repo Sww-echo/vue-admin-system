@@ -17,16 +17,16 @@
         </el-card>
         <el-card class="box-card card_buttom">
           <h2>语言详情</h2>
-          <div class="lang">
+          <div class="lang" v-for="item in lang" :key="item.color">
             <div>
-              javascript
+              {{ item.lang }}
               <el-progress
-                :percentage="72.6"
-                color="#42B983"
+                :percentage="Number(item.num)"
+                :color="item.color"
                 :format="format"
               ></el-progress>
             </div>
-            <div>
+            <!-- <div>
               Vue
               <el-progress
                 :percentage="62.4"
@@ -45,7 +45,7 @@
                 color="#F56C6C"
                 :format="format"
               ></el-progress>
-            </div>
+            </div> -->
           </div>
         </el-card>
       </el-col>
@@ -55,7 +55,7 @@
             <div>
               <i class="icon1 el-icon-user"></i>
               <section>
-                <h3>1234</h3>
+                <h3>{{ userVisit }}</h3>
                 <span>用户访问量</span>
               </section>
             </div>
@@ -64,7 +64,7 @@
             <div>
               <i class="icon2 el-icon-bell"></i>
               <section>
-                <h3>666</h3>
+                <h3>{{ systemNum }}</h3>
                 <span>系统消息</span>
               </section>
             </div>
@@ -73,7 +73,7 @@
             <div>
               <i class="icon3 el-icon-shopping-bag-2"></i>
               <section>
-                <h3 class="sect3">485</h3>
+                <h3 class="sect3">{{ num }}</h3>
                 <span>数量</span>
               </section>
             </div>
@@ -94,8 +94,11 @@
               :show-header="hiddenTableHeader"
             >
               <el-table-column type="selection" width="55"> </el-table-column>
-              <el-table-column prop="msg" align="left" v-model="msg" ref="ms">
-              </el-table-column>
+              <el-table-column
+                prop="msg"
+                align="left"
+                ref="ms"
+              ></el-table-column>
               <el-table-column width="100">
                 <el-button type="text" size="small" @click="changemsg">
                   修改 </el-button
@@ -112,8 +115,11 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+// import happlyaxios from "../../myaxios/happlyaxios";
 export default {
   name: "systemHome",
+
   data() {
     return {
       hiddenTableHeader: false,
@@ -151,7 +157,30 @@ export default {
       ]
     };
   },
+  created() {
+    this.getAxiosUser();
+    this.getAxiosSystemNum();
+    this.getNum();
+    this.getLang();
+  },
+  mounted() {
+    // console.log(this.lang);
+  },
+  computed: {
+    ...mapState({
+      userVisit: state => state.home.userVisit,
+      systemNum: state => state.home.systemNum,
+      num: state => state.home.num,
+      lang: state => state.home.lang
+    })
+  },
   methods: {
+    ...mapActions({
+      getAxiosUser: "home/getUser",
+      getAxiosSystemNum: "home/getSystemNum",
+      getNum: "home/getNum",
+      getLang: "home/getLang"
+    }),
     format(percentage) {
       return percentage === 100 ? "满" : `${percentage}%`;
     },
@@ -326,6 +355,9 @@ export default {
         }
       }
       .todolist {
+        &:hover {
+          box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+        }
         margin: 20px 10px;
         .todolist_top {
           display: flex;
