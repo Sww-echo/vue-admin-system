@@ -38,6 +38,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.page {
+  box-sizing: border-box;
+}
 .form {
   padding-right: 5px;
 }

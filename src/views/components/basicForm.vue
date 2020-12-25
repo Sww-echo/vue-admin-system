@@ -270,7 +270,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.page {
+  box-sizing: border-box;
+}
 .formTopBox {
   margin: 10px 0;
 }

@@ -250,6 +250,7 @@ export default {
   font-size: 14px;
   padding: 10px;
   background: #fff;
+  box-sizing: border-box;
 }
 .tableTitle {
   margin-bottom: 10px;

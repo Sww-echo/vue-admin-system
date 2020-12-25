@@ -33,7 +33,7 @@ export default {
 <style lang="scss">
 .page {
   padding: 10px;
-  //   overflow-x: hidden;
+  box-sizing: border-box;
   h1 {
     font-size: 16px;
     line-height: 34px;
