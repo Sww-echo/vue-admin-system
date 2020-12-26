@@ -14,8 +14,12 @@
           $t("msg.value")
         }}</a>
       </p>
-        <div v-for="(item, key) in $t('text')" v-bind:key="key">
-          <h3 class="changeWord">{{ item }}</h3>
+        <div >
+           <el-carousel :interval="4000" type="card" height="200px">
+              <el-carousel-item v-for="(item, key) in $t('text')" v-bind:key="key">
+                <h3 class="changeWord">{{ item }}</h3>
+              </el-carousel-item>
+            </el-carousel>
         </div>
     </div>
   </div>
