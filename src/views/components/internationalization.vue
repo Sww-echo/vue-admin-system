@@ -14,6 +14,7 @@
           $t("msg.value")
         }}</a>
       </p>
+<<<<<<< HEAD
         <div >
            <el-carousel :interval="4000" type="card" height="200px">
               <el-carousel-item v-for="(item, key) in $t('text')" v-bind:key="key">
@@ -21,6 +22,11 @@
               </el-carousel-item>
             </el-carousel>
         </div>
+=======
+      <div v-for="(item, key) in $t('text')" v-bind:key="key">
+        <h3 class="changeWord">{{ item }}</h3>
+      </div>
+>>>>>>> 1ddcba445e29c3ac500f99bfa6ae8bbdbf29a93b
     </div>
   </div>
 </template>
@@ -84,9 +90,9 @@ export default {
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
 }
-.changeWord{
+.changeWord {
   font-size: 14px;
-  line-height:20px;
+  line-height: 20px;
   font-weight: normal;
   margin: 5px 0;
   padding: 10px;

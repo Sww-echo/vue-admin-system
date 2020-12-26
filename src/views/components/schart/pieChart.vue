@@ -4,8 +4,19 @@
 
 <script>
 import * as echarts from "echarts";
+
 export default {
   name: "pieChart",
+  prop: {},
+  watch: {
+    //监听数据变化
+  },
+  methods: {},
+  /*  created() {
+    axios.get("http://rap2api.taobao.org/app/mock/274183/clothing").then((res) => {
+        console.log(res);
+        })
+}, */
   mounted() {
     var mypieChart = echarts.init(this.$refs.pieChart);
     var optionPie = {
