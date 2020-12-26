@@ -10,7 +10,7 @@
       </div>
       <div class="map">
         <h2>图例</h2>
-        <histogram></histogram>
+        <histogram :apiDatas="apiData"></histogram>
         <h2>饼状图</h2>
         <pie-chart></pie-chart>
       </div>
@@ -21,11 +21,69 @@
 <script>
 import histogram from "./schart/histogram";
 import pieChart from "./schart/pieChart";
+import axios from "axios";
+
+//   function getCertainDay (time) {
+//     if (!time) {
+//       throw Error("传入的时间不能为空");
+//     }
+//     let date = new Date(time);
+//     // 2020-12-19
+//     let year = date.getFullYear(); // 2020
+//     let month =
+//       date.getMonth() + 1 >= 10
+//         ? date.getMonth() + 1
+//         : "0" + (date.getMonth() + 1); // 11 9
+//     let day = date.getDate() >= 10 ? date.getDate() : "0" + date.getDate();
+//     return year + "-" + month + "-" + day;
+//   };
 export default {
   name: "schart",
   components: {
     [histogram.name]: histogram,
     [pieChart.name]: pieChart
+  },
+  data() {
+    return {
+      apiData: [[], [], []]
+    };
+  },
+
+  methods: {
+    // sales: function() {
+    //   let apiData = [[], [], []];
+    // }
+  },
+  computed: {},
+  created() {
+    axios
+      .get("http://rap2api.taobao.org/app/mock/274183/shopping")
+      .then(res => {
+        //console.log(res.data.count);
+        let obj = res.data.count[0];
+        // console.log(arr.arr1);
+        for (let item in obj) {
+          // let num=0
+          // let arr = []
+          obj[item].map(data => {
+            // console.log(data.num)
+            // if(num<5){
+            //     num++
+            //     arr.push(data.num)
+            // }else{
+            //     num=0
+            // }
+            // const num = Math.floor(index /5)
+
+            // console.log(index)
+            this.apiData[item].push(data.num);
+          });
+          // this.apiData.push(arr)
+        }
+        console.log(this.apiData);
+        //    this.apiData = arr
+        console.log(1111);
+      });
   }
 };
 </script>
@@ -33,6 +91,7 @@ export default {
 <style lang="scss">
 .page {
   padding: 10px;
+  box-sizing: border-box;
   //   overflow-x: hidden;
   h1 {
     font-size: 16px;
