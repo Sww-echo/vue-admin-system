@@ -34,8 +34,10 @@ export default {
     handleLeftClick() {
       this.$emit("myCollapse");
     },
+    // 点击退出登录 清除本地localStorage
     handleClick() {
-      localStorage.setItem("is_login", false);
+      // localStorage.setItem("is_login", false);
+      localStorage.removeItem("is_login");
       window.location.reload();
     },
     handleClickGr() {

@@ -9,11 +9,11 @@ export default {
     poem3:
       "There are people who will appreciate what I have done but there are also people who will criticize me,ultimately,history will have the final say。",
     poem4:
-      "The water is clear and the mountain is bright, The frost comes in atnight; Trees are covered with deep scarlet leaves Mixed with yellow that islight",
-    msg: {
-      info:
-        "The default language of Element is Chinese. If you wish to use another language, please refer to the {action}.",
-      value: "documentation"
-    }
+      "The water is clear and the mountain is bright, The frost comes in atnight; Trees are covered with deep scarlet leaves Mixed with yellow that islight"
+  },
+  msg: {
+    info:
+      "The default language of Element is Chinese. If you wish to use another language, please refer to the {action}.",
+    value: "documentation"
   }
 };

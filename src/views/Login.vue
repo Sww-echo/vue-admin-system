@@ -73,6 +73,7 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    // 点击登录
     handleLogin: function(loginForm) {
       // console.log("提交信息");
       this.$refs[loginForm].validate(async valid => {

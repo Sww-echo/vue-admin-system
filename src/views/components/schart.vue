@@ -92,7 +92,6 @@ export default {
 .page {
   padding: 10px;
   box-sizing: border-box;
-  //   overflow-x: hidden;
   h1 {
     font-size: 16px;
     line-height: 34px;
